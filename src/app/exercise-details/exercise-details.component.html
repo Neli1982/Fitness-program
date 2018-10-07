@@ -1,0 +1,66 @@
+<h6>Детайли за упражненията:</h6>
+<button class="btn btn-success"
+        *ngIf = "addNewExec"
+        (click)="goBack()">
+    Назад
+</button>
+<form #detailsForm="ngForm">
+  <div class="form-group">
+    <label>
+      Тренировка
+      <span class="text-danger">*</span>
+    </label>
+    <input type="text"
+          placeholder="Тренировка"
+          class="form-control"
+          required
+          name="zero"
+          #title="ngModel"
+          [(ngModel)]="exercise.title"  >
+  </div>
+  <div class="text-danger"
+       [hidden]="title.valid || title.pristine">
+       Задължително поле
+  </div>
+  <div class="form-group">
+    <label>
+      Вид упражнения
+    </label>
+    <input type="text"
+          placeholder="Упражнение"
+          class="form-control"
+          required
+          name="first"
+          #extitle="ngModel"
+          [(ngModel)]="exercise.extitle"  >
+  </div>
+  <div class="form-group">
+    <label>
+      Продължителност
+    </label>
+    <input type="text"
+          placeholder="Продължителност"
+          class="form-control"
+          name="third"
+          #exduration="ngModel"
+          [(ngModel)]="exercise.exduration"  >
+  </div>
+  <div class="form-group">
+    <label>
+      Описание
+    </label>
+    <textarea id="notes"
+          placeholder="Описание"
+          class="form-control"
+          name="second"
+          #exdescription="ngModel"
+          [(ngModel)]="exercise.exdescription"  >
+        </textarea>
+  </div>
+</form>
+<button class="btn btn-primary"
+        [disabled]="detailsForm.form.pristine || !detailsForm.form.valid"
+        (click)="saveExercise()"
+  >
+  Запази
+</button>

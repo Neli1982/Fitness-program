@@ -1,0 +1,37 @@
+<div class="row">
+  <div class="col-sm-6">
+    <h1>{{title}}</h1>
+    <a class="btn btn-primary m-3"
+        routerLink="/add-New"
+    >
+      Добави
+    </a>
+      <div class="list-group">
+        <a *ngFor="let practise of practises"
+              class="list-group-item list-group-item-action"
+              (click)="onSelectPractise(practise._id)"
+              [class.active]="practise === selectedPractise">
+              <button class="close ml-5 text-danger p-3"
+                      (click)="deletePractise($event,practise._id)">
+                &times;
+              </button>
+              <h5 mr-5>
+                {{practise.title}}
+                <p>
+                  <span class="badge badge-success">
+                    {{practise.duration}}
+                  </span>
+                </p>
+             </h5>
+        </a>
+      </div>
+  </div>
+  <div class="col-sm-5"
+    *ngIf="selectedPractise">
+    <app-practise-details
+          [practise]="selectedPractise"
+          (practiseUpdated)="getPractises()">
+    </app-practise-details>
+  </div>
+
+</div>

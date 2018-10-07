@@ -1,0 +1,44 @@
+<div class="row">
+  <div class="col-sm-6">
+    <h1>Упражнения по тренировки</h1>
+    <a class="btn btn-primary m-3"
+        routerLink="/add"
+    >
+      Добави
+    </a>
+    <a class="btn btn-success m-3"
+        routerLink="/list"
+    >
+      Назад
+    </a>
+       <div class="list-group" role="group">
+        <a *ngFor="let exercise of exercises"
+              class="list-group-item list-group-item-action "
+              (click)="onSelectExercise(exercise._id)"
+              [class.active]="exercise === selectedExercise">
+              <button class="close ml-5 text-danger p-3"
+                      (click)="deleteExercise($event,exercise._id)">
+                &times;
+              </button>
+              <h5>
+                {{exercise.extitle}}
+                <p>
+                  <span class="badge badge-success">
+                    {{exercise.exduration}}
+                  </span>
+                  <span class="badge badge-light">
+                      {{exercise.title}}
+                  </span>
+                </p>
+             </h5>
+        </a>
+      </div>
+  </div>
+  <div class="col-sm-5"
+    *ngIf="selectedExercise">
+    <app-exercise-details
+          [exercise]="selectedExercise"
+          (exerciseUpdated)="getExercises()">
+    </app-exercise-details>
+  </div>
+</div>

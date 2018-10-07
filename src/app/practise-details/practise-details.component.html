@@ -1,0 +1,69 @@
+<h4>Детайли за тренировката:</h4>
+<button class="btn btn-success"
+        *ngIf = "addNewMode"
+        (click)="goBack()">
+    Назад
+</button>
+<form #detailsForm="ngForm">
+  <div class="form-group">
+    <label >
+      Вид тренировка
+      <span class="text-danger">*</span>
+    </label>
+    <input type="text"
+          placeholder="Тренировка"
+          class="form-control"
+          required
+          name="first"
+          #title="ngModel"
+          [(ngModel)]="practise.title"  >
+  </div>
+  <div class="text-danger"
+       [hidden]="title.valid || title.pristine">
+       Задължително поле
+  </div>
+  <div class="form-group">
+    <label>
+      Продължителност
+    </label>
+    <input type="text"
+          placeholder="Продължителност"
+          class="form-control"
+          name="third"
+          #duration="ngModel"
+          [(ngModel)]="practise.duration"  >
+  </div>
+  <div class="form-group">
+    <a class="btn btn-primary m-3"
+        routerLink="/exercise"
+    >
+      Упражнeния
+    </a>
+
+  <input type="text"
+          placeholder="Упражнения"
+          class="form-control"
+          name="forth"
+          #extitle="ngModel"
+          [(ngModel)]="practise.extitle">
+  </div>
+    <div class="form-group">
+    <label >
+      Описание
+    </label>
+    <textarea id="notes"
+          placeholder="Описание"
+          class="form-control"
+          name="second"
+          #description="ngModel"
+          [(ngModel)]="practise.description"  >
+        </textarea>
+  </div>
+</form>
+
+<button class="btn btn-primary"
+        [disabled]="detailsForm.form.pristine || !detailsForm.form.valid"
+        (click)="savePractise()"
+  >
+  Запази
+</button>
